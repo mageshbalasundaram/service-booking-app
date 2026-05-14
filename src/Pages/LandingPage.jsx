@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../Context/AuthContext';
+import Button from '../Components/ui/Button';
 
 const LandingPage = () => {
 
@@ -56,11 +57,12 @@ const LandingPage = () => {
                 
             </div>
             <div style={{display:"flex", gap:"10px", alignItems:"center", justifyContent:"center", marginTop:"20px"}}>
-                <button onClick={() => navigate("/login")}>Login</button>
-                <button onClick={() => navigate("/register")}>Register</button>
+                <Button onClick={() => navigate("/login")}>Login</Button>
+                <Button onClick={() => navigate("/register")}>Register</Button>
+                
             </div>
         </div>
-    )
+    ) 
 }
 
 export default LandingPage

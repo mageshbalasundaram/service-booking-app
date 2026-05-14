@@ -19,8 +19,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path='/user/create-job' element={<ProtectedRoute allowedRole="user"><CreateJob /></ProtectedRoute>} />
           <Route path='/user' element={<ProtectedRoute allowedRole="user"> <UserHome /> </ProtectedRoute>} />
-          <Route path='provider' element={<ProtectedRoute allowedRole="provider"><ProviderDashboard /></ProtectedRoute>} />
-          <Route path='/forgot-Password' element={<ForgotPassword/>}/> 
+          <Route path='/provider' element={<ProtectedRoute allowedRole="provider"><ProviderDashboard /></ProtectedRoute>} />
+          <Route path='/forgot-password' element={<ForgotPassword/>}/> 
         </Routes>
 
       </BrowserRouter>
