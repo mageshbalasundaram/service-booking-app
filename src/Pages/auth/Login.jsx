@@ -34,7 +34,6 @@ export default function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-         console.log("handleLogin fired", email, password); // add this
         try {
             await loginUser(email, password);
 

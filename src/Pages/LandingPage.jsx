@@ -54,15 +54,15 @@ const LandingPage = () => {
                     </div>
                 ))}
 
-                
+
             </div>
-            <div style={{display:"flex", gap:"10px", alignItems:"center", justifyContent:"center", marginTop:"20px"}}>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent: "center", marginTop: "20px" }}>
                 <Button onClick={() => navigate("/login")}>Login</Button>
                 <Button onClick={() => navigate("/register")}>Register</Button>
-                
+
             </div>
         </div>
-    ) 
+    )
 }
 
 export default LandingPage

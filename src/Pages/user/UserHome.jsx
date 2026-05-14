@@ -7,7 +7,17 @@ import { getJobStatusMessage } from "../../utils/JobStatusMessage";
 import Navbar from "../../Components/layout/NavBar";
 
 
+
+
+
 const UserHome = () => {
+
+  const services = [
+        { name: "electrician", icon: "⚡" },
+        { name: "plumber", icon: "🚰" },
+        { name: "carpenter", icon: "🪚" },
+        { name: "ac_service", icon: "❄" }
+    ]
 
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -24,9 +34,9 @@ const UserHome = () => {
   )
 
   useEffect(() => {
-    if(!user) return;
+    if (!user) return;
     const unsubscribe = listenToUserJobs(user.uid, setJobs);
-    return ()=> unsubscribe();
+    return () => unsubscribe();
 
   }, [user]);
 
@@ -60,11 +70,20 @@ const UserHome = () => {
   return (
     <>
       <Navbar />
-      <div>
-        <h2>Welcome {user?.email}</h2>
-        <h3>Book a service</h3>
-        <button onClick={handleLogout}>Logout </button>
-        <button onClick={() => navigate("/user/create-job")}>CreateJob</button>
+      <div className="w-full flex justify-center">
+      <div className="w-300 flex flex-col items-center align-middle gap-5 py-10">
+        <h2 className="text-6xl">Welcome {user?.email?.split("@")[0]}</h2>
+        <h3 className="text-2xl">Explore a service</h3>
+        <div className="flex ">
+        {services.map(service => (
+                    <div key={service.name} style={{ border: "1px solid #ddd", cursor: "pointer", borderRadius: "10px", margin: "10px", padding: "10px" }} onClick={() => navigate(`/user/create-Job?service=${service}`)}>
+                        <h2>{service.icon}</h2>
+                        <p>{service.name}</p>
+                    </div>
+                ))}
+                </div>
+  
+        {/* <button onClick={() => navigate("/user/create-job")}>CreateJob</button> */}
         <h3>Your Request</h3>
 
         {jobs.length === 0 && <p> No Jobs yet</p>}
@@ -147,6 +166,7 @@ const UserHome = () => {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </>
 
