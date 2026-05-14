@@ -55,10 +55,10 @@ export default function CreateJob() {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center align-middle h-full w-full ">
+        <div className="flex flex-col justify-center items-center align-middle h-full w-full bg-blue-50 p-5 rounded-2xl gap-5">
 
-            <h2 className=" flex text-5xl text-center p-5">
-                Book a new service
+            <h2 className=" flex text-3xl text-center">
+                Book a New Service
             </h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-2.5 w-60 md:w-96">
 

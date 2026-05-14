@@ -2,18 +2,14 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../Context/AuthContext';
 import Button from '../Components/ui/Button';
+import Service from '../Components/ui/Service';
 
 const LandingPage = () => {
 
     const navigate = useNavigate();
     const { user, role, loading } = useAuth();
 
-    const services = [
-        { name: "electrician", icon: "⚡" },
-        { name: "plumber", icon: "🚰" },
-        { name: "carpenter", icon: "🪚" },
-        { name: "ac_service", icon: "❄" }
-    ]
+
 
     const handleServiceClick = (service) => {
 
@@ -44,15 +40,7 @@ const LandingPage = () => {
                 justifyContent: "center",
                 gap: "20px",
                 marginTop: "40px"
-            }}>
-
-
-                {services.map(service => (
-                    <div key={service.name} style={{ border: "1px solid #ddd", cursor: "pointer", borderRadius: "10px", margin: "10px", padding: "10px" }} onClick={() => handleServiceClick(service.name)}>
-                        <h2>{service.icon}</h2>
-                        <p>{service.name}</p>
-                    </div>
-                ))}
+            }}><Service/>
 
 
             </div>
