@@ -46,7 +46,7 @@ export default function Login() {
            <h1 className="text-3xl font-bold text-center ">Book your Service Now in <span className="text-4xl text-blue-600">ETNow</span></h1>
            
            <p className="text-lg text-gray-400 text-center ">Plumber? Electrician? AC techician? Find them all in <span className=" text-blue-600 font-medium">ETNow </span>app.</p>
-           <div ></div>
+           
             
         <form onSubmit={handleLogin} className=" flex flex-col self-center w-150 h-fit gap-2.5 p-5 border border-gray-100 rounded-xl shadow-lg">
             <h2 className="text-3xl font-semibold text-center">LOGIN</h2>
@@ -60,7 +60,7 @@ export default function Login() {
                 </Button>
 
                 <div className="w-full flex flex-col p-5 mt-10 rounded bg-gray-50 border border-gray-100 gap-5">
-                     <p className="text-lg text-center">
+                     <p className="text-lg text-center text-gray-400">
                     Don't have an account? </p>
                 <Button variant="secondary"><a className="text-blue-600"  href="/register">Register</a>
                 </Button>
