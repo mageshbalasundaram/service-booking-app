@@ -24,10 +24,13 @@
     min-height: 400px;
     max-height: 600px;
     overflow-y: auto;
-    border: 1px solid #f1f1f1;
+    border: 1px solid #f1f1f1;display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .accepted-column{
     background: rgb(216, 255, 216);
+
 }
 .ongoing-column{
     background: rgb(255, 222, 160);
@@ -42,4 +45,14 @@
     margin-bottom: 12px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.provider-title{
+    font-size: 20px;
+    font-weight: 500;
 }

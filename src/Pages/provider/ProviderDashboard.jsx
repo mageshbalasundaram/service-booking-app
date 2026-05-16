@@ -4,6 +4,7 @@ import { useAuth } from "../../Context/AuthContext";
 import { logoutUser } from "../../Services/authservice";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/layout/NavBar";
+import Button from "../../Components/ui/Button";
 
 export default function ProviderDashboard() {
 
@@ -61,6 +62,8 @@ export default function ProviderDashboard() {
         await updateJobStatus(jobId, "in_progress")
     }
 
+    const username = user?.email?.split("@")[0];
+
     // const handleLogout = async () => {
     //     try {
     //         await logoutUser();
@@ -72,22 +75,37 @@ export default function ProviderDashboard() {
 
 
     return (
-        <>
+        <div className="min-h-screen bg-gray-50">
             <Navbar />
-            <div className="inner-con">
-                <div className="Heading" style={{ fontSize: "30px", textAlign: "center" }}><h2>Provider Dashboard</h2></div>
+            {/* Hero header */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <p className="text-sm text-gray-400 font-medium tracking-widest uppercase mb-1">
+            Provider Dashboard
+          </p>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Welcome back,{" "}
+            <span className="text-blue-600 capitalize">{username}</span> 👋
+          </h1>
+          <p className="text-gray-500 mt-1 text-sm">
+            Here's an overview of your service bookings.
+          </p>
+        </div>
+      </div>
+            <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-8 items-start justify-between">
                 <div className="grid" >
-                    <div className="column">
-                        <h3>Available Jobs</h3>
+                    <div className="column flex flex-col gap-5 shadow-sm bg-white">
+                        <h3 className="provider-title">Available Jobs</h3>
                         {availableJobs.length === 0 && <p>No jobs </p>}
 
                         {availableJobs.map(job => (
 
-                            <div key={job.id} className="provider-card available-jobs">
-                                <h3>{job.service}</h3>
+                            <div key={job.id} className="provider-card available-jobs ">
+                                <h3>{job.service} </h3>
                                 <p><b>Description:</b>{job.description}</p>
                                 <p><b>Location:</b> {job.location}</p>
-                                <button onClick={() => handleAccept(job.id)}>Accept ✅</button>
+                                <Button onClick={() => handleAccept(job.id)}>Accept ✅</Button>
+                                
 
 
                             </div>
@@ -96,7 +114,7 @@ export default function ProviderDashboard() {
                     </div>
                     <div className="column accepted-column">
 
-                        <h3>Accepted Jobs</h3>
+                        <h3 className="provider-title">Accepted Jobs</h3>
                         {pendingJobs.length === 0 && <p>No jobs Available</p>}
                         {pendingJobs.map(job => (
 
@@ -105,7 +123,7 @@ export default function ProviderDashboard() {
                                 <p><b>Description:</b>{job.description}</p>
                                 <p><b>Location:</b>  {job.location}</p>
 
-                                <button onClick={() => handlestart(job.id)}>Start Job</button>
+                                <Button onClick={() => handlestart(job.id)}>Start Job</Button>
 
 
                             </div>
@@ -114,14 +132,14 @@ export default function ProviderDashboard() {
                     </div>
 
                     <div className="column ongoing-column">
-                        <h3>Ongoing/IN Progress</h3>
+                        <h3 className="provider-title">Ongoing/IN Progress</h3>
                         {ongoingJobs.length === 0 && <p>No OnGoing jobs</p>}
                         {ongoingJobs.map(job => (
                             <div key={job.id} className="card ongoing-jobs">
                                 <h3>{job.service}</h3>
                                 <p><b>Description:</b>{job.description}</p>
                                 <p><b>Location:</b>  {job.location}</p>
-                                <button onClick={() => handleComplete(job.id)}>Complete Job</button>
+                                <Button onClick={() => handleComplete(job.id)}>Complete Job</Button>
 
                             </div>
                         ))}
@@ -129,18 +147,18 @@ export default function ProviderDashboard() {
 
                     <div className="column completed-column">
 
-                        <h3>Completed Jobs</h3>
+                        <h3 className="provider-title">Completed Jobs</h3>
                         {completedJobs.length === 0 && <p>No completed Jobs</p>}
                         {completedJobs.map(job => (
-                            <div key={job.id} className="card">
+                            <div key={job.id} className="card w-full">
                                 <h3>{job.service}</h3>
                                 <p><b>Description:</b>{job.description}</p>
                                 <p><b>Location:</b>  {job.location}</p>
                                 <p>Job Completed</p>
-                                <select onChange={(e) => updateJobStatus(job.id, e.target.value)}>
-                                    <option value="">Change Status</option>
-                                    <option value="accepted">Pending</option>
-                                    <option value="in_progress">Ongoing</option>
+                                <select className="border border-gray-300 rounded p-2 w-ful text-gray-500 text-sm" onChange={(e) => updateJobStatus(job.id, e.target.value)}>
+                                    <option className="border border-gray-300 rounded p-2 w-full" value="">Change Status</option>
+                                    <option className="border border-gray-300 rounded p-2 w-full" value="accepted">Pending</option>
+                                    <option className="border border-gray-300 rounded p-2 w-full" value="in_progress">Ongoing</option>
                                 </select>
 
 
@@ -152,7 +170,7 @@ export default function ProviderDashboard() {
 
                 </div>
             </div>
-        </>
+        </div>
     )
 
 }

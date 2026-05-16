@@ -67,7 +67,7 @@ const UserHome = () => {
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <p className="text-sm text-gray-400 font-medium tracking-widest uppercase mb-1">
-            Dashboard
+            User Dashboard
           </p>
           <h1 className="text-3xl font-bold text-gray-900">
             Welcome back,{" "}
