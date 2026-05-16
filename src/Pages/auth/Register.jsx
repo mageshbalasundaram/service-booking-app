@@ -68,7 +68,7 @@ export default function Register() {
             <div className="w-full flex flex-col p-2 mt-5 rounded bg-gray-50 border border-gray-100 gap-3">
                      <p className="text-lg text-center">
                     Already have an account?  </p>
-                <Button variant="secondary"><a className="text-blue-600"  href="/register">Login</a>
+                <Button variant="secondary"><a className="text-blue-600"  href="/login">Login</a>
                 </Button>
 
                 </div>

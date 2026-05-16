@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { resetPassword } from "../../Services/authservice";
+import Input from "../../Components/ui/Input";
+import Button from "../../Components/ui/Button";
 
 
 export default function ForgotPassword() {
@@ -23,8 +25,9 @@ return (
 
     <form onSubmit={handleReset}>
         <h2>Forgot Password</h2>
-        <input type="email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
-        <button type="submit">Send Rest Link</button>
+        <Input type="email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
+        <Button type="submit">Send Rest Link</Button>
+        
     </form>
 )
 }
