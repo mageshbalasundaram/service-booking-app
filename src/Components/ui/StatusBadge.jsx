@@ -3,10 +3,10 @@ import React from 'react'
 const StatusBadge = ({ status }) => {
 
     const styles = {
-        created: "bg-yellow-100 text-yellow-800",
-        accepted: "bg-blue-100 text-blue-800",
-        in_progress: "bg-orange-100 text-orange-800",
-        completed: "bg-green-100 text-green-800"
+        created: "bg-yellow-100 text-yellow-700",
+        accepted: "bg-blue-100 text-blue-700",
+        in_progress: "bg-orange-100 text-orange-700",
+        completed: "bg-green-100 text-green-700"
     }
 
     const labels = {

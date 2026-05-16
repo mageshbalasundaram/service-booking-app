@@ -15,7 +15,7 @@ export default function Navbar() {
 
     return (
         <div className="bg-gray-50 w-full flex justify-center items-center border-b-2 border-b-gray-200" >
-            <div className="w-300 flex justify-between py-2.5 px-5  ">
+            <div className="max-w-7xl w-full flex justify-between py-2.5 px-5  ">
 
 
                 <h3 className="font-bold text-3xl text-blue-600 align-middle" style={{ cursor: "pointer" }} onClick={() => navigate("/")}>ETNow</h3>

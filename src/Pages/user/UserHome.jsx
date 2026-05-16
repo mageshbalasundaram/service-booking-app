@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   getProviderDetails,
   listenToUserJobs,
@@ -9,12 +9,15 @@ import Navbar from "../../Components/layout/NavBar";
 import CreateJob from "./CreateJob";
 import StatusBadge from "../../Components/ui/StatusBadge";
 
+
 const UserHome = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
   const [providers, setProviders] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const fetchingRef = useRef(new Set());
 
   useEffect(() => {
     if (!user) return;
@@ -29,21 +32,32 @@ const UserHome = () => {
   }, [user]);
 
   // FIX: added `providers` to dependency array to avoid stale closure
+
+
   useEffect(() => {
     jobs.forEach(async (job) => {
-      if (job.providerId && !providers[job.providerId]) {
+      if (!job.providerId) return;
+      if (providers[job.providerId]) return;
+      if (fetchingRef.current.has(job.providerId)) return;
+
+      fetchingRef.current.add(job.providerId);
+
+      try {
         const providerData = await getProviderDetails(job.providerId);
-        setProviders((prev) => ({
-          ...prev,
-          [job.providerId]: providerData,
-        }));
+        setProviders((prev) => ({ ...prev, [job.providerId]: providerData }));
+
+      } catch (err) {
+        console.error("Failed to fetch provider:", err);
+
+      } finally {
+        fetchingRef.current.delete(job.providerId);
       }
     });
-  }, [jobs, providers]);
+  }, [jobs]);
 
   const username = user?.email?.split("@")[0];
 
- 
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -57,7 +71,7 @@ const UserHome = () => {
           </p>
           <h1 className="text-3xl font-bold text-gray-900">
             Welcome back,{" "}
-            <span className="text-indigo-600 capitalize">{username}</span> 👋
+            <span className="text-blue-600 capitalize">{username}</span> 👋
           </h1>
           <p className="text-gray-500 mt-1 text-sm">
             Here's an overview of your service bookings.
@@ -67,7 +81,7 @@ const UserHome = () => {
 
       {/* Main layout */}
       <div className="max-w-7xl mx-auto px-6 py-8 flex gap-8 items-start justify-between">
-        
+
         {/* Left: Bookings list */}
         <section className="w-200">
           <div className="flex items-center justify-between mb-5">
@@ -118,7 +132,7 @@ const UserHome = () => {
 
           {/* Booking cards */}
           {!loading && jobs.length > 0 && (
-            <div className=" grid grid-cols-2! w-full  gap-4">
+            <div className=" grid grid-cols-2! w-full!  gap-4">
               {jobs.map((job) => {
                 const provider = job.providerId
                   ? providers[job.providerId]
@@ -150,6 +164,7 @@ const UserHome = () => {
                     )}
 
                     {/* Divider + provider section */}
+                    
                     {provider && (
                       <div className="border-t border-gray-100 pt-4 mt-2">
                         <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
@@ -157,7 +172,7 @@ const UserHome = () => {
                         </p>
                         <div className="flex items-center gap-3">
                           {/* Avatar */}
-                          <div className="w-9 h-9 rounded-full bg-indigo-100 text-indigo-600 font-semibold text-sm flex items-center justify-center shrink-0">
+                          <div className="w-9 h-9 rounded-full bg-blue-100 text-blue-600 font-semibold text-sm flex items-center justify-center shrink-0">
                             {provider.name?.charAt(0).toUpperCase() ?? "?"}
                           </div>
                           <div>
