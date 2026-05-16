@@ -14,7 +14,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<LandingPage />} />
+          <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path='/user/create-job' element={<ProtectedRoute allowedRole="user"><CreateJob /></ProtectedRoute>} />
