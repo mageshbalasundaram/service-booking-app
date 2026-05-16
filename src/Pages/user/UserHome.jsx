@@ -7,6 +7,7 @@ import { getJobStatusMessage } from "../../utils/JobStatusMessage";
 import Navbar from "../../Components/layout/NavBar";
 import Service from "../../Components/ui/Service";
 import CreateJob from "./CreateJob";
+import StatusBadge from "../../Components/ui/StatusBadge";
 
 
 
@@ -17,16 +18,7 @@ const UserHome = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
-
   const [providers, setProviders] = useState({});
-
-  const activeJobs = jobs.filter(
-    job => job.status !== "completed"
-  );
-
-  const completedJobs = jobs.filter(
-    job => job.status === "completed"
-  )
 
   useEffect(() => {
     if (!user) return;
@@ -58,102 +50,47 @@ const UserHome = () => {
 
       <Navbar />
       <div className="w-full flex justify-center items-center">
-      <div className="w-300 flex items-center align-middle gap-5 py-10 justify-between">
-        <div className="flex flex-col  items-start gap-5">
+        <div className="w-300 flex gap-5 py-10 justify-between">
+          <div className="flex-1 flex flex-col  items-start gap-5 w-[65%] ">
+            <h2 className="text-4xl">Welcome {user?.email?.split("@")[0]}</h2>
+            <h3 className="text-2xl">My Bookings</h3>
 
-        
-        <h2 className="text-6xl">Welcome {user?.email?.split("@")[0]}</h2>
-        <h3 className="text-2xl">Explore Our services</h3>
-        <Service/>
-  
-        {/* <button onClick={() => navigate("/user/create-job")}>CreateJob</button> */}
-        <h3>Your Request</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
+              {jobs.map((job) => (
 
-        {jobs.length === 0 && <p> No Jobs yet</p>}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px" }}>
-          {jobs.map(job => (
+                <div key={job.id} className="bg-white border border-gray-200 rounded-2xl p-5  shadow-sm ">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h4 className="text-lg font-semibold capitalize">{job.service}</h4>
+                      <p className="text-sm text-gray-500">{job.location}</p>
+                    </div>
+                    <StatusBadge status={job.status} />
 
-            <div key={job.id} style={{ border: "1px solid grey", margin: "10px", padding: "10px", borderRadius: "10px", background: "#fafafa" }}>
-              <h4>{job.service}</h4>
-              <p>{job.description}</p>
-              <p>Location: {job.location}</p>
-              <p>Status: {getJobStatusMessage(job.status)}</p>
-              {job.status === "accepted" && (
-                <p style={{ color: "green" }}>
-                  ✔ Provider accepted your request
-                </p>
-              )}
+                  </div>
+                  <p className="text-gray-700 text-sm mb-4">{job.description}</p>
+                  {job.providerId && providers[job.providerId] && (
+                    <div className="bg-gray-50 rounded-xl p-3 border">
+                      <p className="font-medium text-sm mb-1">Assigned Provider</p>
+                      <p className="text-sm"> 👤 {providers[job.providerId].name}</p>
+                      <p className="text-sm">  📞 {providers[job.providerId].phone}</p>
+                    </div>
 
-              {job.status === "in_progress" && (
-                <p style={{ color: "orange" }}>
-                  🔧 Work has started
-                </p>
-              )}
-
-              {job.status === "completed" && (
-                <p style={{ color: "blue" }}>
-                  ✅ Job completed
-                </p>
-              )}
-
-
-              {job.providerId && providers[job.providerId] && (
-
-                <div style={{
-                  background: "#f2f2f2", padding: "10px", marginTop: "10px",
-                  borderRadius: "6px"
-                }}>
-                  <p><strong>Provider Assigned</strong></p>
-                  <p>Name: {providers[job.providerId].name}</p>
-                  <p>Phone: {providers[job.providerId].phone}</p>
-
-
+                  )}
 
                 </div>
-              )}
 
-
-            </div>
-          ))}
-        </div>
-
-
-        <h3>Active Jobs</h3>
-        {activeJobs.length === 0 && <p>No active jobs</p>}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px" }}>
-          {activeJobs.map(job => (
-            <div key={job.id} style={{ border: "1px solid grey", margin: "10px", padding: "10px", borderRadius: "10px", background: "#fafafa" }}>
-              <h4>{job.service}</h4>
-              <p>{job.description}</p>
-              <p>Location: {job.location}</p>
-              <p>Status: {job.status}</p>
-              {job.providerId && <p>Provider Assigned</p>}
-
-
+              ))}
 
             </div>
-          ))}
-        </div>
-
-        <h3>Completed Jobs</h3>
-
-        {completedJobs.length === 0 && <p>No completed Jobs</p>}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px" }}>
-          {completedJobs.map(job => (
-            <div key={job.id} style={{ border: "1px solid grey", margin: "10px", padding: "10px", borderRadius: "10px", background: "#fafafa" }}>
-              <h4>{job.service}</h4>
-              <p>{job.description}</p>
-              <p>Location: {job.location}</p>
-              <p>Status: {job.status}</p>
+          </div>
+          <div className="flex items-start w-[35%]">
+            <div className="">
+              <CreateJob />
 
             </div>
-          ))}
+
+          </div>
         </div>
-        </div>
-        <div>
-          <CreateJob/>
-        </div>
-      </div>
       </div>
     </>
 

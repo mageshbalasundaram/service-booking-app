@@ -9,7 +9,7 @@ const StatusBadge = ({ status }) => {
         completed: "bg-green-100 text-green-800"
     }
 
-    const lables = {
+    const labels = {
         created: "⏳ Waiting for provider",
         accepted: "✅ Provider accepted",
         in_progress: "🔧 Work in progress",

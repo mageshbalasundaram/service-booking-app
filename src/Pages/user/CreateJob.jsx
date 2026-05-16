@@ -16,7 +16,6 @@ export default function CreateJob() {
     const [service, setService] = useState(defaultService);
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
-    const [locationLink, setLocationLink] = useState("");
     const [scheduleDate, setScheduleDate] = useState("");
     const [scheduleTime, setScheduleTime] = useState("");
 
@@ -31,7 +30,6 @@ export default function CreateJob() {
                 service,
                 description,
                 location,
-                locationLink,
                 scheduleDate,
                 scheduleTime,
                 customerId: user.uid
@@ -43,7 +41,6 @@ export default function CreateJob() {
             setService("");
             setDescription("");
             setLocation("");
-            setLocationLink("");
             setScheduleDate("");
             setScheduleTime("");
 
@@ -55,7 +52,7 @@ export default function CreateJob() {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center align-middle h-full w-full bg-blue-50 p-5 rounded-2xl gap-5">
+        <div className="flex flex-col  items-center  bg-blue-50 p-5 rounded-2xl gap-5">
 
             <h2 className=" flex text-3xl text-center">
                 Book a New Service
@@ -74,8 +71,7 @@ export default function CreateJob() {
                 <input className="border border-b-black rounded p-2 w-full" type="date" value={scheduleDate} min={new Date().toISOString().split("T")[0]} onChange={(e) => setScheduleDate(e.target.value)} required />
                 <input className="border border-b-black rounded p-2 w-full" type="time" value={scheduleTime} onChange={(e) => setScheduleTime(e.target.value)} required />
                 <input className="border border-b-black rounded p-2 w-full" type="text" placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} required />
-                <input className="border border-b-black rounded p-2 w-full" type="url" placeholder="Google map link" value={locationLink} onChange={(e) => setLocationLink(e.target.value)} />
-                <textarea className="border border-b-black rounded p-2 w-ful" placeholder="Describe the problem" value={description} onChange={(e) => setDescription(e.target.value)} required />
+                 <textarea className="border border-b-black rounded p-2 w-ful" placeholder="Describe the problem" value={description} onChange={(e) => setDescription(e.target.value)} required />
                 <button type="submit">Create Job</button>
             </form>
         </div>
