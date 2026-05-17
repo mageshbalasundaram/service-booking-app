@@ -7,6 +7,7 @@ import Register from '../Pages/auth/Register'
 import CreateJob from '../Pages/user/CreateJob'
 import ProviderDashboard from '../Pages/provider/ProviderDashboard'
 import ForgotPassword from '../Pages/auth/ForgotPassword'
+import NotFound from '../Pages/common/NotFound'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/user' element={<ProtectedRoute allowedRole="user"> <UserHome /> </ProtectedRoute>} />
           <Route path='/provider' element={<ProtectedRoute allowedRole="provider"><ProviderDashboard /></ProtectedRoute>} />
           <Route path='/forgot-password' element={<ForgotPassword/>}/> 
+          <Route path="*" element={<NotFound/>} />
         </Routes>
 
       </BrowserRouter>
