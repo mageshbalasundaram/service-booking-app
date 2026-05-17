@@ -67,7 +67,7 @@ export default function CreateJob() {
             <form onSubmit={handleSubmit} className="flex flex-col gap-2.5 w-60 md:w-96">
 
 
-                <select className=" text-gray-500 text-sm border border-gray-300 rounded p-2 w-ful" onChange={(e) => setService(e.target.value)} requried>
+                <select className=" text-gray-500 text-sm border border-gray-300 rounded p-2 w-ful" onChange={(e) => setService(e.target.value)} required>
 
                     <option value="">Select service</option>
                     <option value="electrician">Electrician</option>

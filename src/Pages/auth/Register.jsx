@@ -9,7 +9,7 @@ export default function Register() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confrimPassword, setConfrimPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
     const [name, setName] = useState("");
@@ -18,7 +18,7 @@ export default function Register() {
 
 
     const navigate = useNavigate();
-    const passwordsMatch = password === confrimPassword;
+    const passwordsMatch = password === confirmPassword;
     const handleRegister = async (e) => {
         e.preventDefault();
 
@@ -71,8 +71,8 @@ export default function Register() {
                 />
                 <Input type="email" placeholder="Enter you email" onChange={(e) => setEmail(e.target.value)} required />
                 <Input type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} required />
-                <Input type="password" placeholder="Confrim password" onChange={(e) => setConfrimPassword(e.target.value)} required />
-                {confrimPassword && !passwordsMatch && (
+                <Input type="password" placeholder="Confirm password" onChange={(e) => setConfirmPassword(e.target.value)} required />
+                {confirmPassword && !passwordsMatch && (
                     <p className="text-red-500 text-sm">Password Do Not match</p>
                 )}
                 <select className="border border-gray-300 rounded p-2 w-ful text-gray-500 text-sm" placeholder="Choose" onChange={(e) => setRole(e.target.value)} required>

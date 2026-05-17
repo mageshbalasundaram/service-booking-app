@@ -20,11 +20,6 @@ export const registerUser = async (email, password, role, name, phone) => {
     return user;
 };
 
-
-// export const loginUser = async (email, password) => {
-//     return await signInWithEmailAndPassword(auth, email, password);
-// }
-
 export const loginUser = async (email, password) => {
     return await signInWithEmailAndPassword(auth, email, password);
 }
