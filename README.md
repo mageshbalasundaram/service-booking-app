@@ -6,13 +6,17 @@ A full-stack MVP web application that connects customers with home service provi
 
 ## 🚀 Live Demo
 
-> _Coming soon / Add your deployed link here_
+> _Coming soon 
 
 ---
 
 ## 📸 Screenshots
 
-> _Add screenshots of Landing Page, User Dashboard, Provider Dashboard_
+> ![alt text](../Bookings/src/assets/Register.png)
+![alt text](../Bookings/src/assets/Login.png)
+![alt text](../Bookings/src/assets/ProviderDashboard.png)
+![alt text](src/assets/UserDashboard.png)
+
 
 ---
 

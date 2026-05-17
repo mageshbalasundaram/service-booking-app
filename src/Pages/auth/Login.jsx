@@ -4,7 +4,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import Button from "../../Components/ui/Button";
 import Input from "../../Components/ui/Input";
-import Service from "../../Components/ui/Service";
 
 
 export default function Login() {

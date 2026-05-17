@@ -6,7 +6,6 @@ import UserHome from '../Pages/user/UserHome'
 import Register from '../Pages/auth/Register'
 import CreateJob from '../Pages/user/CreateJob'
 import ProviderDashboard from '../Pages/provider/ProviderDashboard'
-import LandingPage from '../Pages/LandingPage'
 import ForgotPassword from '../Pages/auth/ForgotPassword'
 
 const App = () => {
