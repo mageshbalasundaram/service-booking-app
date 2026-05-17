@@ -6,14 +6,12 @@ A full-stack MVP web application that connects customers with home service provi
 
 ## 🚀 Live Demo
 
-> _Coming soon 
-
+https://etnow-service-booking-platform-roan.vercel.app/
 ---
 
 ## 📸 Screenshots
-
-![alt text](src/assets/Register.png)
 ![alt text](src/assets/Login.png)
+![alt text](src/assets/Register.png)
 ![alt text](src/assets/ProviderDashboard.png)
 ![alt text](src/assets/UserDashboard.png)
 
