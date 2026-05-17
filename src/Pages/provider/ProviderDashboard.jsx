@@ -64,107 +64,99 @@ export default function ProviderDashboard() {
 
     const username = user?.email?.split("@")[0];
 
-    // const handleLogout = async () => {
-    //     try {
-    //         await logoutUser();
-    //         navigate("/login");
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-
 
     return (
         <div className="min-h-screen bg-gray-50">
             <Navbar />
             {/* Hero header */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <p className="text-sm text-gray-400 font-medium tracking-widest uppercase mb-1">
-            Provider Dashboard
-          </p>
-          <h1 className="text-3xl font-bold text-gray-900">
-            Welcome back,{" "}
-            <span className="text-blue-600 capitalize">{username}</span> 👋
-          </h1>
-          <p className="text-gray-500 mt-1 text-sm">
-            Here's an overview of your service bookings.
-          </p>
-        </div>
-      </div>
+            <div className="bg-white border-b border-gray-100">
+                <div className="max-w-7xl mx-auto px-6 py-8">
+                    <p className="text-sm text-gray-400 font-medium tracking-widest uppercase mb-1">
+                        Provider Dashboard
+                    </p>
+                    <h1 className="text-3xl font-bold text-gray-900">
+                        Welcome back,{" "}
+                        <span className="text-blue-600 capitalize">{username}</span> 👋
+                    </h1>
+                    <p className="text-gray-500 mt-1 text-sm">
+                        Here's an overview of your service bookings.
+                    </p>
+                </div>
+            </div>
             <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-8 items-start justify-between">
-                <div className="grid" >
-                    <div className="column flex flex-col gap-5 shadow-sm bg-white">
-                        <h3 className="provider-title">Available Jobs</h3>
-                        {availableJobs.length === 0 && <p>No jobs </p>}
+                <div className="grid grid-cols-4 w-full gap-5" >
+                    <div className="bg-green-50/10 p-3.5 rounded-lg min-h-100 max-h-150 overflow-y-auto border border-green-100 flex flex-col gap-5 shadow-sm">
+                        <h3 className="text-lg font-medium">Available Jobs</h3>
+                        <div className="flex flex-col gap-2.5 overflow-y-auto">
+                        {availableJobs.length === 0 && <p className=" bg-white border border-gray-100 rounded  p-2 shadow text-gray-500 ">Currently No Jobs </p>}
 
                         {availableJobs.map(job => (
 
-                            <div key={job.id} className="provider-card available-jobs ">
-                                <h3>{job.service} </h3>
-                                <p><b>Description:</b>{job.description}</p>
-                                <p><b>Location:</b> {job.location}</p>
+                            <div key={job.id} className="flex flex-col gap-2.5 bg-white border border-gray-100 rounded  p-2 shadow ">
+                                <h3 className="font-bold capitalize">{job.service} </h3>
+                                <p className="capitalize"><span className="font-medium cap">Description: </span >{job.description}</p>
+                                <p className="capitalize"><span className="font-medium">Location:</span> {job.location}</p>
                                 <Button onClick={() => handleAccept(job.id)}>Accept ✅</Button>
-                                
-
-
+                                <p className="text-[9px] text-gray-500">If you dont want leave as it is, anaother provider will pick it</p>
                             </div>
                         ))}
+                        </div>
 
                     </div>
-                    <div className="column accepted-column">
+                    <div className="bg-green-50 p-3.5 rounded-lg min-h-100 max-h-150 border border-green-100 flex flex-col gap-5 shadow-sm">
 
-                        <h3 className="provider-title">Accepted Jobs</h3>
-                        {pendingJobs.length === 0 && <p>No jobs Available</p>}
+                        <h3 className="text-lg font-medium">Accepted Jobs</h3>
+                        <div className="flex flex-col gap-2.5 overflow-y-auto">
+                        {pendingJobs.length === 0 && <p className=" bg-white border border-gray-100 rounded  p-2 shadow text-gray-500 ">No jobs Available</p>}
                         {pendingJobs.map(job => (
 
-                            <div key={job.id} className="card accepted-jobs">
-                                <h3>{job.service}</h3>
-                                <p><b>Description:</b>{job.description}</p>
-                                <p><b>Location:</b>  {job.location}</p>
+                            <div key={job.id} className="flex flex-col gap-2.5 bg-white border border-gray-100 rounded  p-2 shadow ">
+                                <h3 className="font-bold capitalize">{job.service} </h3>
+                                <p className="capitalize"><span className="font-medium cap">Description: </span >{job.description}</p>
+                                <p className="capitalize"><span className="font-medium">Location:</span> {job.location}</p>
 
                                 <Button onClick={() => handlestart(job.id)}>Start Job</Button>
-
-
                             </div>
 
                         ))}
+                        </div>
                     </div>
 
-                    <div className="column ongoing-column">
-                        <h3 className="provider-title">Ongoing/IN Progress</h3>
-                        {ongoingJobs.length === 0 && <p>No OnGoing jobs</p>}
+                    <div className="bg-green-100 p-3.5 rounded-lg min-h-100 max-h-150 border border-green-200 flex flex-col gap-5 shadow-sm">
+                        <h3 className="text-lg font-medium">Ongoing/IN Progress</h3>
+                        <div className="flex flex-col gap-2.5 overflow-y-auto">
+                        {ongoingJobs.length === 0 && <p className=" bg-white border border-gray-100 rounded  p-2 shadow text-gray-500 ">No OnGoing jobs</p>}
                         {ongoingJobs.map(job => (
-                            <div key={job.id} className="card ongoing-jobs">
-                                <h3>{job.service}</h3>
-                                <p><b>Description:</b>{job.description}</p>
-                                <p><b>Location:</b>  {job.location}</p>
+                            <div key={job.id} className="flex flex-col gap-2.5 bg-white border border-gray-100 rounded  p-2 shadow">
+                                <h3 className="font-bold capitalize">{job.service} </h3>
+                                <p className="capitalize"><span className="font-medium cap">Description: </span >{job.description}</p>
+                                <p className="capitalize"><span className="font-medium">Location:</span> {job.location}</p>
                                 <Button onClick={() => handleComplete(job.id)}>Complete Job</Button>
 
                             </div>
                         ))}
+                        </div>
                     </div>
 
-                    <div className="column completed-column">
+                    <div className="bg-green-200 p-3.5 rounded-lg min-h-100 max-h-150  border border-green-300 flex flex-col gap-5 shadow-sm">
 
-                        <h3 className="provider-title">Completed Jobs</h3>
-                        {completedJobs.length === 0 && <p>No completed Jobs</p>}
+                        <h3 className="text-lg font-medium">Completed Jobs</h3>
+                        <div className="flex flex-col gap-2.5 overflow-y-auto">
+                        {completedJobs.length === 0 && <p className=" bg-white border border-gray-100 rounded  p-2 shadow text-gray-500 ">No Completed Jobs</p>}
                         {completedJobs.map(job => (
-                            <div key={job.id} className="card w-full">
-                                <h3>{job.service}</h3>
-                                <p><b>Description:</b>{job.description}</p>
-                                <p><b>Location:</b>  {job.location}</p>
-                                <p>Job Completed</p>
+                            <div key={job.id} className="flex flex-col gap-2.5 bg-white border border-gray-100 rounded  p-2 shadow ">
+                                <h3 className="font-bold capitalize">{job.service} </h3>
+                                <p className="capitalize"><span className="font-medium cap">Description: </span >{job.description}</p>
+                                <p className="capitalize"><span className="font-medium">Location:</span> {job.location}</p>
+                                <p className="font-bold text-green-600 ">Job Completed</p>
                                 <select className="border border-gray-300 rounded p-2 w-ful text-gray-500 text-sm" onChange={(e) => updateJobStatus(job.id, e.target.value)}>
                                     <option className="border border-gray-300 rounded p-2 w-full" value="">Change Status</option>
                                     <option className="border border-gray-300 rounded p-2 w-full" value="accepted">Pending</option>
                                     <option className="border border-gray-300 rounded p-2 w-full" value="in_progress">Ongoing</option>
                                 </select>
-
-
-
                             </div>
                         ))}
+                        </div>
                     </div>
 
 

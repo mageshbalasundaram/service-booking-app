@@ -152,7 +152,6 @@ const UserHome = () => {
                         <p className="text-sm text-gray-400 flex items-center gap-1 mt-0.5">
                           <span>📍</span> {job.location}
                         </p>
-                        
                       </div>
                       <StatusBadge status={job.status} />
                     </div>

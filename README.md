@@ -12,9 +12,9 @@ A full-stack MVP web application that connects customers with home service provi
 
 ## 📸 Screenshots
 
-> ![alt text](../Bookings/src/assets/Register.png)
-![alt text](../Bookings/src/assets/Login.png)
-![alt text](../Bookings/src/assets/ProviderDashboard.png)
+![alt text](src/assets/Register.png)
+![alt text](src/assets/Login.png)
+![alt text](src/assets/ProviderDashboard.png)
 ![alt text](src/assets/UserDashboard.png)
 
 
