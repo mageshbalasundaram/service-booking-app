@@ -16,6 +16,7 @@ export default function ProviderDashboard() {
     const [pendingJobs, setPendingJobs] = useState([]);
     const [ongoingJobs, setOngoingJobs] = useState([]);
     const [completedJobs, setCompletedJobs] = useState([]);
+    const [error, setError] = useState("");
 
     useEffect(() => {
 
@@ -42,23 +43,34 @@ export default function ProviderDashboard() {
     // actions
 
     const handleAccept = async (jobId) => {
-        await acceptJob(jobId, user.uid);
 
-        setAvailableJobs(prev => prev.filter(job => job.id !== jobId))
-    };
+        try {
+            await acceptJob(jobId, user.uid);
 
+            setAvailableJobs(prev => prev.filter(job => job.id !== jobId))
+
+        } catch (error) {
+            setError(error.message)
+        }
+
+    }
     const handlestart = async (jobId) => {
-        await startJob(jobId);
+
+        try {
+            await startJob(jobId);
+        } catch (error) {
+            setError(error.message)
+        }
+
     };
 
     const handleComplete = async (jobId) => {
-        await completeJob(jobId);
+        try {
+            await completeJob(jobId);
 
-
-    }
-
-    const handleMarkOngoing = async (jobId) => {
-        await updateJobStatus(jobId, "in_progress")
+        } catch (error) {
+            setError(error.message)
+        }
     }
 
     const username = user?.email?.split("@")[0];
@@ -97,6 +109,11 @@ export default function ProviderDashboard() {
                                     <p className="capitalize"><span className="font-medium">Location:</span> {job.location}</p>
                                     <Button onClick={() => handleAccept(job.id)}>Accept ✅</Button>
                                     <p className="text-[9px] text-gray-500">If you dont want leave as it is, anaother provider will pick it</p>
+                                    {error && (
+                                        <p className="text-red-500 text-sm">
+                                            {error}
+                                        </p>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -115,6 +132,11 @@ export default function ProviderDashboard() {
                                     <p className="capitalize"><span className="font-medium">Location:</span> {job.location}</p>
 
                                     <Button onClick={() => handlestart(job.id)}>Start Job</Button>
+                                    {error && (
+                                        <p className="text-red-500 text-sm">
+                                            {error}
+                                        </p>
+                                    )}
                                 </div>
 
                             ))}
@@ -131,6 +153,11 @@ export default function ProviderDashboard() {
                                     <p className="capitalize"><span className="font-medium cap">Description: </span >{job.description}</p>
                                     <p className="capitalize"><span className="font-medium">Location:</span> {job.location}</p>
                                     <Button onClick={() => handleComplete(job.id)}>Complete Job</Button>
+                                    {error && (
+                                        <p className="text-red-500 text-sm">
+                                            {error}
+                                        </p>
+                                    )}
 
                                 </div>
                             ))}
@@ -153,6 +180,11 @@ export default function ProviderDashboard() {
                                         <option className="border border-gray-300 rounded p-2 w-full" value="accepted">Pending</option>
                                         <option className="border border-gray-300 rounded p-2 w-full" value="in_progress">Ongoing</option>
                                     </select>
+                                    {error && (
+                                        <p className="text-red-500 text-sm">
+                                            {error}
+                                        </p>
+                                    )}
                                 </div>
                             ))}
                         </div>

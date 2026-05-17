@@ -14,7 +14,7 @@ export const registerUser = async (email, password, role, name, phone) => {
         role: role,
         name: name,
         phone: phone,
-        createAt: serverTimestamp()
+        createdAt: serverTimestamp()
     });
 
     return user;
