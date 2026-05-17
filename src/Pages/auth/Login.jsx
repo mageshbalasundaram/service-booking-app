@@ -10,6 +10,7 @@ export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
     const { role, loading } = useAuth();
@@ -31,11 +32,12 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
+            setError("");
             await loginUser(email, password);
 
 
         } catch (error) {
-            alert(error.message);
+            setError(error.message);
         }
     }
     
@@ -52,6 +54,9 @@ export default function Login() {
 
                 <Input type="email" placeholder="Enter you email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                {error && (
+                    <p className="text-sm text-red-500">{error}</p>
+                )}
 
                 <Button variant="primary" type="submit">Login</Button>
                 <Button  variant="secondary" className=" ">

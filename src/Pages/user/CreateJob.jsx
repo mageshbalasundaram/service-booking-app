@@ -14,18 +14,22 @@ export default function CreateJob() {
 
     const [searchParams] = useSearchParams();
     const defaultService = searchParams.get("service") || "";
-
     const [service, setService] = useState(defaultService);
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     const [scheduleDate, setScheduleDate] = useState("");
     const [scheduleTime, setScheduleTime] = useState("");
+    const [success, setSuccess] = useState("");
+    const [error, setError] = useState("");
 
 
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setError("");
+        setSuccess("");
 
         try {
             await createJob({
@@ -37,19 +41,20 @@ export default function CreateJob() {
                 customerId: user.uid
             });
 
-            alert("Job Created succesfully");
-
-
+            setSuccess("Job Created succesfully");
+            setTimeout(() => {
+                setSuccess("")
+            }, 2000);
             setService("");
             setDescription("");
             setLocation("");
             setScheduleDate("");
             setScheduleTime("");
-
-            navigate("/user")
+           
 
         } catch (error) {
-            alert(error.message);
+            setError(error.message);
+            setTimeout(()=> {setError("")}, 2000)
         }
     };
 
@@ -75,6 +80,12 @@ export default function CreateJob() {
                 <Input className="border border-gray-300 rounded p-2 w-full" type="text" placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} required />
                  <textarea className="border border-gray-300 rounded p-2 w-ful" placeholder="Describe the problem" value={description} onChange={(e) => setDescription(e.target.value)} required />
                 <Button type="submit">Create Job</Button>
+                {error && (
+                    <p className="text-sm text-black bg-red-200 text-center p-2 rounded">{error}</p>
+                )}
+                {success && (
+                    <p className="text-sm text-black text-center p-2 bg-green-200 rounded">{success}</p>
+                )}
                 
                 
             </form>
